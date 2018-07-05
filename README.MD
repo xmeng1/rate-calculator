@@ -1,0 +1,1 @@
+java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote -v
