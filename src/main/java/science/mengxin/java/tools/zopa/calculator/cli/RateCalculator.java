@@ -28,9 +28,9 @@ public class RateCalculator {
                 .withDefaultCommand(Help.class)
                 .withCommands(Help.class, Quote.class);
 
-        Cli<Runnable> gitParser = builder.build();
+        Cli<Runnable> raterParser = builder.build();
 
-        gitParser.parse(args).run();
+        raterParser.parse(args).run();
     }
 
 }

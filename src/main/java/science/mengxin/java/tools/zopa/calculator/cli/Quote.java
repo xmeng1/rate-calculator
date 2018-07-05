@@ -16,16 +16,26 @@ package science.mengxin.java.tools.zopa.calculator.cli;
 import io.airlift.airline.Arguments;
 import io.airlift.airline.Command;
 import io.airlift.airline.Option;
-import io.airlift.airline.OptionType;
 
 import java.util.List;
 
 @Command(name = "quote", description = "Quote the best offer")
 public class Quote extends RateCommand {
-    @Arguments(description = "Patterns of files to be added")
-    public List<String> patterns;
+//    @Arguments(required = true, title="file", description = "The full path of market file")
+//    public String file;
 
-    @Option(name = "-i", description = "Add modified contents interactively.")
-    public boolean interactive;
+    @Option(required = true, name = "-f", description = "The full path of market file")
+    private String file;
 
+    @Option(required = true, name = "-l", description = "The amount of loan which support Double")
+    private Double loanAmount;
+
+    @Override
+    public void run() {
+        if (verbose) {
+            System.out.println("Args [file:" + file + ", loan amount:"
+                    + String.valueOf(loanAmount) + "]");
+        }
+        System.out.println("Quote Run");
+    }
 }
