@@ -14,7 +14,6 @@
 package science.mengxin.java.tools.zopa.calculator.cli
 
 import spock.lang.Specification
-import spock.lang.Unroll
 
 
 /**
@@ -41,23 +40,23 @@ class RateCalculatorTest extends Specification {
         then:
         monthReplay
         println(monthReplay)
-        println(monthReplay * 36)
+        println(monthReplay * months)
 
     }
 
-    public static double calculateMonthlyPayment(
+    static double calculateMonthlyPayment(
             int loanAmount, int termInYears, double interestRate) {
 
         // Convert interest rate into a decimal
         // eg. 6.5% = 0.065
 
         //interestRate /= 100.0;
-        double monthlyRate = monthRateCal (interestRate);
+        double monthlyRate = monthRateCal (interestRate)
 
         // The length of the term in months
         // is the number of years times 12
 
-        int termInMonths = termInYears * 12;
+        int termInMonths = termInYears * 12
 
         // Calculate the monthly payment
         // Typically this formula is provided so
@@ -67,16 +66,16 @@ class RateCalculatorTest extends Specification {
 
         double monthlyPayment =
                 (loanAmount*monthlyRate) /
-                        (1-Math.pow(1+monthlyRate, -termInMonths));
+                        (1-Math.pow(1+monthlyRate, -termInMonths))
 //        double monthlyPayment =
 //                (loanAmount*monthlyRate * Math.pow(1+monthlyRate, termInMonths)) /
 //                        (Math.pow(1+monthlyRate, termInMonths) - 1);
-        return monthlyPayment;
+        return monthlyPayment
     }
 
     // interestRate == 7  %
-    public static double monthRateCal(double interestRate) {
-        interestRate = 1 + interestRate /100;
+    static double monthRateCal(double interestRate) {
+        interestRate = 1 + interestRate /100
         return Math.pow(interestRate, 1/12) -1
     }
 }
