@@ -18,7 +18,7 @@ import io.airlift.airline.OptionType;
 
 public class RateCommand implements Runnable {
     @Option(type = OptionType.GLOBAL, name = "-v", description = "Verbose mode")
-    public boolean verbose;
+    boolean verbose;
 
     public void run()
     {
