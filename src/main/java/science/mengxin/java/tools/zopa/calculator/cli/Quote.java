@@ -45,6 +45,15 @@ public class Quote extends RateCommand {
 
     @Override
     public void run() {
+        if (file == null) {
+            System.out.println("WARNING: please specific the market data file");
+            return;
+        }
+        if (loanAmount == null) {
+            System.out.println("WARNING: please specific the amount of loan");
+            return;
+        }
+
         if (verbose) {
             System.out.println("Args [file:" + file + ", loan amount:"
                     + String.valueOf(loanAmount) + "]");
