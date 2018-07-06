@@ -1,1 +1,1 @@
-java -jar target/rate-calculator-1.0-SNAPSHOT.jar
+java -jar target/rate-calculator-0.1.2.jar
