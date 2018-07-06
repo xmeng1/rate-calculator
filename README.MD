@@ -23,7 +23,7 @@ mvn package
 ### run the jar and show help information
 
 ```bash
-java -jar -Xmx128m target/rate-calculator-0.1.0.jar
+java -jar -Xmx128m target/rate-calculator-0.1.1.jar
 ```
 
 ### usage

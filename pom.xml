@@ -19,7 +19,7 @@
 
     <groupId>science.mengxin.java.tools</groupId>
     <artifactId>rate-calculator</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
     <description>A rate calculation system allowing prospective borrowers to
         obtain a quote from our pool of lenders for 36 month loans. This system will
         take the form of a command-line application.
