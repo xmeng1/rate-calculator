@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/xmeng1/rate-calculator.svg?branch=master)](https://travis-ci.org/xmeng1/rate-calculator)
 
+[![codecov](https://codecov.io/gh/xmeng1/rate-calculator/branch/master/graph/badge.svg)](https://codecov.io/gh/xmeng1/rate-calculator)
+
 The tools is designed for searching the best offer for borrower.
 
 ## Task list
@@ -23,7 +25,7 @@ mvn package
 ### run the jar and show help information
 
 ```bash
-java -jar -Xmx128m target/rate-calculator-0.1.1.jar
+java -jar -Xmx128m target/rate-calculator-0.1.2.jar
 ```
 
 ### usage
@@ -72,7 +74,7 @@ java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote -l 1000
 Missing optionRequired option '-f' is missing
 
 ```
-λ java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote
+java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote
 ```
 Missing optionRequired option '-l' is missing 
 
