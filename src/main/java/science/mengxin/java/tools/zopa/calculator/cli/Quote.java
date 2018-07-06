@@ -13,7 +13,6 @@
 
 package science.mengxin.java.tools.zopa.calculator.cli;
 
-import io.airlift.airline.Arguments;
 import io.airlift.airline.Command;
 import io.airlift.airline.Option;
 import org.slf4j.Logger;
@@ -26,6 +25,7 @@ import science.mengxin.java.tools.zopa.calculator.utils.LoansCalculator;
 import science.mengxin.java.tools.zopa.calculator.utils.OfferSearchUtils;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class Quote extends RateCommand {
             System.out.println("Cannot get best offer for amount " + loanAmount +
                     " in data " + file);
             log.warn("Cannot get best offer for amount {} in data {}", loanAmount, file);
-        }else {
+        } else {
             // compute the repayment
             System.out.println("The base offer for " + loanAmount + " in data " + file + " is as follows:");
             LoansRepayment loansRepayment = LoansCalculator.calculateRepayment(loanAmount, 3, bestOffer.getRate());
@@ -73,9 +73,14 @@ public class Quote extends RateCommand {
             DecimalFormat df = new DecimalFormat("#.##");
 
             StringBuilder sb = new StringBuilder();
-            sb.append("Requested amount: £").append(loanAmount).append("\n");
-            sb.append("Monthly repayment: £").append(Double.valueOf(df.format(loansRepayment.getMonthlyRepayment()))).append("\n");
-            sb.append("  Total repayment: £").append(Double.valueOf(df.format(loansRepayment.getTotalRepayment()))).append("\n");
+            String pound = "£";
+            sb.append("Requested amount: ").append(new String(pound.getBytes(), StandardCharsets.UTF_8))
+                    .append(loanAmount).append("\n");
+            sb.append("Rate: ").append(bestOffer.getRate()).append("%\n");
+            sb.append("Monthly repayment: ").append(new String(pound.getBytes(), StandardCharsets.UTF_8))
+                    .append(Double.valueOf(df.format(loansRepayment.getMonthlyRepayment()))).append("\n");
+            sb.append("  Total repayment: ").append(new String(pound.getBytes(), StandardCharsets.UTF_8))
+                    .append(Double.valueOf(df.format(loansRepayment.getTotalRepayment()))).append("\n");
             if (verbose) {
                 sb.append("Best offer is:").append(bestOffer.toString()).append("\n");
             }
