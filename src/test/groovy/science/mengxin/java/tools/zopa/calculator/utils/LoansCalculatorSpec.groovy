@@ -13,6 +13,7 @@
 
 package science.mengxin.java.tools.zopa.calculator.utils
 
+import science.mengxin.java.tools.zopa.calculator.model.LoansRepayment
 import spock.lang.Specification
 import spock.lang.Unroll
 

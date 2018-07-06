@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package science.mengxin.java.tools.zopa.calculator.utils;
+package science.mengxin.java.tools.zopa.calculator.model;
 
 /**
  * Information of Loans Repayment

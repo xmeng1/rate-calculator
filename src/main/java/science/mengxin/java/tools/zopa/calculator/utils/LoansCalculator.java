@@ -13,10 +13,16 @@
 
 package science.mengxin.java.tools.zopa.calculator.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import science.mengxin.java.tools.zopa.calculator.model.LoansRepayment;
+
 /**
  * Class for the loan related calculator method.
  */
 public class LoansCalculator {
+
+    private static Logger log = LoggerFactory.getLogger(LoansCalculator.class);
 
     /**
      * Convert the year Rate to month rate by using monthly compounding interest
