@@ -19,6 +19,9 @@ public class LenderOffer {
     private Double rate;
     private Double available;
 
+    public LenderOffer() {
+    }
+
     public LenderOffer(String name, Double rate, Double available) {
         this.name = name;
         this.rate = rate;
@@ -47,5 +50,15 @@ public class LenderOffer {
 
     public void setAvailable(Double available) {
         this.available = available;
+    }
+
+
+    @Override
+    public String toString() {
+        return "LenderOffer{" +
+                "name='" + name + '\'' +
+                ", rate=" + rate +
+                ", available=" + available +
+                '}';
     }
 }

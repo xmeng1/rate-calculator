@@ -35,7 +35,7 @@ class CsvUtilsSpec extends Specification {
     def "test loadOffersFromCsv #fileName"() {
         given: "test csv file"
         String marketCsvFile = fileName
-        and: "get the full path from resoure"
+        and: "get the full path from resource"
         String fullPath = CsvUtilsSpec.class.getResource(marketCsvFile).getPath()
 
         when: "load the data from csv"
