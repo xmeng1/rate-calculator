@@ -14,6 +14,7 @@
 package science.mengxin.java.tools.zopa.calculator.cli
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 
 /**
@@ -27,8 +28,45 @@ class RateCalculatorTest extends Specification {
     }
 
     def months = 36
+
+    @Unroll
+    def "test double multiple 100"() {
+        when:
+        Double d1 = d
+        Double x = d1 * 100
+        then:
+        println("Normal : " + x)
+
+        when:
+        BigDecimal a1 = new BigDecimal(Double.toString(d));
+        BigDecimal b1 = new BigDecimal(Double.toString(100));
+        BigDecimal result = a1 * b1;
+        println("BigDecimal: " + result);
+        BigDecimal one = new BigDecimal("1");
+        double a = result.divide(one, 2, BigDecimal.ROUND_HALF_UP).doubleValue()
+        System.out.println(a);
+        then:
+        System.out.println(a);
+        where:
+        d        || resoult
+        538.865d || ""
+        0.075    || ""
+        0.069    || ""
+        0.071    || ""
+        0.104    || ""
+        0.081    || ""
+        0.074    || ""
+        0.071    || ""
+        0.03     || ""
+        0.118    || ""
+        0.138    || ""
+        0.148    || ""
+        0.188    || ""
+        0.198    || ""
+    }
+
     /**
-     * This cas
+     * This case
      */
     def "quick learning how to calculate the repayment"() {
         given: "basic information"
@@ -51,7 +89,7 @@ class RateCalculatorTest extends Specification {
         // eg. 6.5% = 0.065
 
         //interestRate /= 100.0;
-        double monthlyRate = monthRateCal (interestRate)
+        double monthlyRate = monthRateCal(interestRate)
 
         // The length of the term in months
         // is the number of years times 12
@@ -65,8 +103,8 @@ class RateCalculatorTest extends Specification {
         // The Math.pow() method is used calculate values raised to a power
 
         double monthlyPayment =
-                (loanAmount*monthlyRate) /
-                        (1-Math.pow(1+monthlyRate, -termInMonths))
+                (loanAmount * monthlyRate) /
+                        (1 - Math.pow(1 + monthlyRate, -termInMonths))
 //        double monthlyPayment =
 //                (loanAmount*monthlyRate * Math.pow(1+monthlyRate, termInMonths)) /
 //                        (Math.pow(1+monthlyRate, termInMonths) - 1);
@@ -75,7 +113,7 @@ class RateCalculatorTest extends Specification {
 
     // interestRate == 7  %
     static double monthRateCal(double interestRate) {
-        interestRate = 1 + interestRate /100
-        return Math.pow(interestRate, 1/12) -1
+        interestRate = 1 + interestRate / 100
+        return Math.pow(interestRate, 1 / 12) - 1
     }
 }
