@@ -44,7 +44,7 @@ Both of the option are required.
 ### examples
 
 ```bash
-λ java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar -v quote -l 1000 -f D:\Develop\IDEAProject\rate-calculator\src\test\resources\market- file\market-offer-search-test.csv
+java -jar -Xmx128m target/rate-calculator-0.q.2.jar -v quote -l 1000 -f D:\Develop\IDEAProject\rate-calculator\src\test\resources\market- file\market-offer-search-test.csv
 ```
 
 Options [file:D:\Develop\IDEAProject\rate-calculator\src\test\resources\market-file\market-offer-search-test.csv, loan amount:1000.0]
@@ -59,21 +59,21 @@ Best offer is:  LenderOffer{name='Alex', rate=0.118, available=1200.0}
 ```bash
 java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote -l 1000 -f xx
 ```
-Try to get the market data from the filexx, but failed. xx (The system cannot find the file specified)
+Try to get the market data from the file: xx, but failed. xx (The system cannot find the file specified)
 22:11:51.732 [main] ERROR s.m.j.t.z.c.c.Quote - Get file xx but get error xx (The system cannot find the file specified)
 
-```
+```bash
 java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote -l 1000 -f file_not_exist
 ```
 Try to get the market data from the filefile_not_exist, but failed. file_not_exist (The system cannot find the file specified)
 22:12:02.171 [main] ERROR s.m.j.t.z.c.c.Quote - Get file file_not_exist but get error file_not_exist (The system cannot find the file specified)
 
-```
+```bash
 java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote -l 1000
 ```
 Missing optionRequired option '-f' is missing
 
-```
+```bash
 java -jar -Xmx128m target/rate-calculator-1.0-SNAPSHOT.jar quote
 ```
 Missing optionRequired option '-l' is missing 
