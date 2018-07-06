@@ -16,13 +16,26 @@ package science.mengxin.java.tools.zopa.calculator.cli;
 import io.airlift.airline.Arguments;
 import io.airlift.airline.Command;
 import io.airlift.airline.Option;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import science.mengxin.java.tools.zopa.calculator.exception.CsvParseException;
+import science.mengxin.java.tools.zopa.calculator.model.LenderOffer;
+import science.mengxin.java.tools.zopa.calculator.model.LoansRepayment;
+import science.mengxin.java.tools.zopa.calculator.utils.CsvUtils;
+import science.mengxin.java.tools.zopa.calculator.utils.LoansCalculator;
+import science.mengxin.java.tools.zopa.calculator.utils.OfferSearchUtils;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Command(name = "quote", description = "Quote the best offer")
 public class Quote extends RateCommand {
-//    @Arguments(required = true, title="file", description = "The full path of market file")
-//    public String file;
+
+    private static Logger log = LoggerFactory.getLogger(Quote.class);
+
+    //    @Arguments(required = true, title="file", description = "The full path of market file")
+    //    public String file;
 
     @Option(required = true, name = "-f", description = "The full path of market file")
     private String file;
@@ -36,6 +49,47 @@ public class Quote extends RateCommand {
             System.out.println("Args [file:" + file + ", loan amount:"
                     + String.valueOf(loanAmount) + "]");
         }
-        System.out.println("Quote Run");
+        // read data from the file
+        List<LenderOffer> lenderOfferList;
+        try {
+            lenderOfferList = CsvUtils.loadOffersFromCsv(file);
+        } catch (IOException | CsvParseException e) {
+            System.out.println("Try to get the market data from the file" + file +
+                    ", but failed. " + e.getMessage());
+            log.error("Get file {} but get error {}", file, e.getMessage());
+            return;
+        }
+        // get the best offer
+        LenderOffer bestOffer = OfferSearchUtils.getBestSingleLenderOffer(lenderOfferList, loanAmount);
+        if (bestOffer == null) {
+            System.out.println("Cannot get best offer for amount " + loanAmount +
+                    " in data " + file);
+            log.warn("Cannot get best offer for amount {} in data {}", loanAmount, file);
+        }else {
+            // compute the repayment
+            System.out.println("The base offer for " + loanAmount + " in data " + file + " is as follows:");
+            LoansRepayment loansRepayment = LoansCalculator.calculateRepayment(loanAmount, 3, bestOffer.getRate());
+
+            DecimalFormat df = new DecimalFormat("#.##");
+
+            StringBuilder sb = new StringBuilder();
+            sb.append("Requested amount: £").append(loanAmount).append("\n");
+            sb.append("Monthly repayment: £").append(Double.valueOf(df.format(loansRepayment.getMonthlyRepayment()))).append("\n");
+            sb.append("  Total repayment: £").append(Double.valueOf(df.format(loansRepayment.getTotalRepayment()))).append("\n");
+            if (verbose) {
+                sb.append("Best offer is:").append(bestOffer.toString()).append("\n");
+            }
+
+            System.out.println(sb.toString());
+
+        }
+    }
+
+    public void setFile(String file) {
+        this.file = file;
+    }
+
+    public void setLoanAmount(Double loanAmount) {
+        this.loanAmount = loanAmount;
     }
 }

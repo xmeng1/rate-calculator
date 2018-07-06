@@ -51,6 +51,7 @@ class OfferSearchUtilsSpec extends Specification {
             assert bestOffer.getName() == name
             log.info("loanAmount {} and offer: {}", loanAmount, bestOffer.toString())
         } else {
+            assert bestOffer == null
             log.info("loanAmount {} cannot find", loanAmount)
         }
         where:
@@ -64,7 +65,8 @@ class OfferSearchUtilsSpec extends Specification {
         10000d     || true     || "Sunny"
         10100d     || true     || "Sunny"
         15000d     || true     || "Sunny"
-        45000d     || false    || "null"
+        45000d     || true     || "Good"
+        50301d     || false    || "null"
 
     }
 }
