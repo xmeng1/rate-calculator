@@ -1,5 +1,7 @@
 # Rate Calculator CLI
 
+[![Build Status](https://travis-ci.org/xmeng1/rate-calculator.svg?branch=master)](https://travis-ci.org/xmeng1/rate-calculator)
+
 The tools is designed for searching the best offer for borrower.
 
 ## Task list
