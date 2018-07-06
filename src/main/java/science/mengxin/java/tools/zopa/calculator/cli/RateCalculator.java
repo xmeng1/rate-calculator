@@ -15,6 +15,7 @@ package science.mengxin.java.tools.zopa.calculator.cli;
 
 import io.airlift.airline.Cli;
 import io.airlift.airline.Help;
+import io.airlift.airline.ParseOptionMissingException;
 
 /**
  * The main class for science.mengxin.java.tools.zopa.calculator.cli.RateCalculator
@@ -23,14 +24,19 @@ public class RateCalculator {
 
     public static void main(String[] args)
     {
-        Cli.CliBuilder<Runnable> builder = Cli.<Runnable>builder("rater")
-                .withDescription("quote the information of the offer")
-                .withDefaultCommand(Help.class)
-                .withCommands(Help.class, Quote.class);
 
-        Cli<Runnable> raterParser = builder.build();
+        try {
+            Cli.CliBuilder<Runnable> builder = Cli.<Runnable>builder("rater")
+                    .withDescription("quote the information of the offer")
+                    .withDefaultCommand(Help.class)
+                    .withCommands(Help.class, Quote.class);
 
-        raterParser.parse(args).run();
+            Cli<Runnable> raterParser = builder.build();
+
+            raterParser.parse(args).run();
+        } catch (ParseOptionMissingException parseOptionMissingException) {
+            System.out.println("Missing option" + parseOptionMissingException.getMessage());
+        }
     }
 
 }
