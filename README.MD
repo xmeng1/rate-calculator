@@ -1,5 +1,7 @@
 # Rate Calculator CLI
 
+[![Build Status](https://travis-ci.org/xmeng1/rate-calculator.svg?branch=master)](https://travis-ci.org/xmeng1/rate-calculator)
+
 The tools is designed for searching the best offer for borrower.
 
 ## Task list
@@ -21,7 +23,7 @@ mvn package
 ### run the jar and show help information
 
 ```bash
-java -jar -Xmx128m target/rate-calculator-0.1.0.jar
+java -jar -Xmx128m target/rate-calculator-0.1.1.jar
 ```
 
 ### usage
