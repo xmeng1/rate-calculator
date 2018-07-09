@@ -6,6 +6,8 @@
 
 The tools is designed for searching the best offer for borrower.
 
+[How to calculate the loan month repayment?](https://notes.mengxin.science/2018/07/07/how-to-calculate-the-loan-repayment/)
+
 ## Task list
 
 1. cli toolkit
